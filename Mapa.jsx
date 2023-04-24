@@ -35,6 +35,7 @@ export default function Mapa() {
   const [tienda, setTienda] = useState("");
   const [colonia, setColonia] = useState("");
   const [calle, setCalle] = useState("");
+  const [cp, setCP] = useState("");
   const [lat, setLat] = useState("");
   const [lng, setLng] = useState("");
 
@@ -44,7 +45,7 @@ export default function Mapa() {
   const [text, setText] = useState("Empty");
 
   const sendFormData = () => {
-    if (!ruta || !tienda || !colonia || !calle || !lat || !lng || !date) {
+    if (!ruta || !tienda || !colonia || !calle || !cp || !lat || !lng || !date) {
       alert("Por favor, completa todos los campos");
       return;
     }
@@ -56,14 +57,16 @@ export default function Mapa() {
       ToastAndroid.show('Sí jala', ToastAndroid.SHORT);
     }
 
-    // const actualSituation = situation === "Otro" ? otherSituation : situation;
-
-    // const formData = {
-    //   ruta: ruta,
-    //   situacion: actualSituation,
-    //   descripcion: description,
-    //   fecha: date,
-    // };
+    const formData = {
+       ruta: ruta,
+      tienda: tienda,
+      colonia: colonia,
+      calle: calle,
+      cp: cp,
+      latitud: lat,
+      longitud: lng,
+      fecha: date,
+    };
 
     // axios
     //   .post("https://onroute.fly.dev/situaciones", formData)
@@ -135,6 +138,17 @@ export default function Mapa() {
               style={styles.textInput}
               value={calle}
               onChangeText={(value) => setCalle(value)}
+            />
+          </View>
+        </View>
+
+        <View style={styles.inputContainer}>
+          <Text style={styles.label}>Código postal</Text>
+          <View style={styles.pickerContainer}>
+            <TextInput
+              style={styles.textInput}
+              value={cp}
+              onChangeText={(value) => setCP(value)}
             />
           </View>
         </View>
